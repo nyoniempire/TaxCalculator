@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TaxCalculator</string>
+
+    <string name="txt_under_65">Under 65</string>
+    <string name="txt_btwn_65_75">Between 65 and 75</string>
+    <string name="txt_over_75">Over 75</string>
+    <string name="txt_calculate">Calculate</string>
+
+    <string name="txt_tax_hint">Monthly Income (R)</string>
+
+</resources>
