@@ -8,14 +8,22 @@ import com.ankhafrika.taxcalculator.util.helper.TaxCalculator
 
 class MainViewModel : ViewModel() {
 
-    private val taxDue = MutableLiveData(0.00)
+    private val _taxDue = MutableLiveData(Pair(0.00, 0.00)) //Pair<Salary left, Tax Due>
 
-    fun getTaxDue(): LiveData<Double> {
-        return taxDue
+    fun getTaxDue(): LiveData<Pair<Double, Double>> {
+        return _taxDue
     }
 
+    @Synchronized
     fun calculateTaxDue(user: UserDetails) {
-        taxDue.postValue(Math.round(TaxCalculator(user).calculate() * 100) / 100.toDouble())
+        val taxDue = Math.round(TaxCalculator(user).calculate() * 100) / 100.toDouble()
+        val salaryDue = Math.round(user.monthlySalary * 100) / 100.toDouble() - taxDue
+        _taxDue.postValue(
+            Pair(
+                salaryDue,
+                taxDue
+            )
+        )
     }
 
 }

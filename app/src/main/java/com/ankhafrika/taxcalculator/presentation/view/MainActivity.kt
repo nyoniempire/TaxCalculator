@@ -17,7 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getTaxDue().observe(this) { taxDue ->
             taxDue?.let {
-                binding.tvTaxDue.text = "Your Tax due is: \n R${taxDue}"
+                binding.apply {
+                    tvTaxDue.text = "Your Tax due is: \n R${taxDue.second}"
+                    tvSalaryDue.text = "Your salary is \n R${taxDue.first}"
+                }
             }
         }
 
